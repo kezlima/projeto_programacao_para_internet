@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 
-{% block titulo %}Página Inicial{% endblock %}
+{% block titulo %}Pagina Inicial{% endblock %}
 
 {% block conteudo %}
-<!--<img src="{{ url_for('static', filename='img/logo.jpg') }}"
-alt="Logo do site" width="100px">
-<h2>Olá, Bom dia!</h2>
-<p>Este é o meu site feito com Flask.</p>-->
-
-{% if current_user.is_authenticated %}
-<h1>Bem-vindo(a), {{ current_user.username }}!</h1>
-{% else %}
-<h1>Faça o login para continuar.</h1>
-{% endif %}
-
+    {% if usuario_logado %}
+    <h1>Bem-vindo(a), {{ usuario.nome }}!</h1>
+    <ul>
+    {% for p in usuario.produtos %}
+    <li>{{ p }}</li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <h1>Faça o login para continuar.</h1>
+    {% endif %}
 {% endblock %}

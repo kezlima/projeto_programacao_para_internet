@@ -1,54 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<title> minha pagina</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <title>{% block titulo %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<header>Meu Site</header>
-
-<!--{% with messages = get_flashed_messages() %}
-{% if messages %}
-<ul>
-{% for message in messages %}
-<li>{{ message }}</li>
-{% endfor %}
-</ul>
-{% endif %}
-{% endwith %}
-
- 
-  {% with messages = get_flashed_messages() %}
-{% if messages %}
-  <ul>
-    {% for message in messages%}
-     <li>{{ message}}</li>
-    {% endfor %}
-  </ul>
-{% endif %}
-
-{% endwith %}
-{% block conteudo %}
-
-   
-{% endblock %}-->
-
-<header>
-  <div>
-  Rede Social:
-  <a href="/">Início</a>
-  {% if current_user.is_anonymous %}
-  <a href="{{ url_for('login') }}">Login</a>
-  {% else %}
-  <a href="{{ url_for('logout') }}">Logout</a>
-  {% endif %}
-  <a href="{{ url_for('inserir') }}">Cadastro de Usuário</a>
-
-  </div>
-  </header>
-
-
-
-<footer>Todos os direitos reservados</footer>
+    <header>
+        <div>
+            Rede Social:
+            <a href="/">Início</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('cadastrar') }}">Cadastro de Usuário</a>
+            <a href="{{ url_for('listar') }}">Listar Usuários</a>
+            <a href="{{ url_for('post') }}">Postagem</a>
+        </div>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+                    <li><i class="fa fa-exclamation-triangle"></i> {{ message }}</li>
+                {% elif category == 'success' %}
+                    <li><i class="fa fa-check"></i> {{ message }}</li>
+                {% else %}
+                    <li>{{ message }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    {% block conteudo %}
+    {% endblock %}
+    <footer>Todos os direitos reservados</footer>
 </body>
 </html>

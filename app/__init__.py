@@ -1,29 +1,20 @@
-from flask import Flask 
-from flask_login import LoginManager
+from flask import Flask
 from flask_wtf import CSRFProtect
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-app=Flask(__name__)
+app = Flask(__name__)
 app.config.from_object(Config)
 
 db = SQLAlchemy()
-csrf=CSRFProtect(app)  #protege os formularios contra ataques CSRF
-migrate=Migrate()
-login_manager = LoginManager(app)
+csrf = CSRFProtect(app)
 
+migrate = Migrate()
 db.init_app(app)
-migrate.init_app(app,db)
-
-login_manager.init_app(app)
-login_manager.login_view = 'login' 
+migrate.init_app(app, db)
 
 from app import routes, models
 
-@login_manager.user_loader
-def load_user(user_id):
- return models.Usuario.query.get(int(user_id))
-
-#with app.app_context():
- #db.create_all()
+with app.app_context():
+    db.create_all()
