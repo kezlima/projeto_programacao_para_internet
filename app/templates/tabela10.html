@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Tabela</title>
+</head>
+<body>
+    <label for="linhas">Digite a quantidade de linhas:</label>
+    <input type="text" id="linhas">
+    <label for="colunas">Digite a quantidade de colunas:</label>
+    <input type="text" id="colunas">
+
+    <button id="botao" onclick="clicar()">Clique aqui</button>
+
+    <table id="tabela" border="1"></table>
+
+    <script>
+        function clicar() {
+            var linha = parseInt(document.getElementById('linhas').value);
+            var coluna = parseInt(document.getElementById('colunas').value);
+            var tabela = document.getElementById('tabela');
+
+            // Limpa a tabela antes de adicionar novas linhas
+            tabela.innerHTML = "";
+
+            for (let i = 0; i < linha; i++) {
+                var tr = document.createElement('tr');
+                for (let j = 0; j < coluna; j++) {
+                    var td = document.createElement('td');
+                    td.textContent = `L${i + 1} C${j + 1}`;
+                    tr.appendChild(td);
+                }
+                tabela.appendChild(tr);
+            }
+        }
+    </script>
+</body>
+</html>
+
+

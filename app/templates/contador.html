@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="">Adicione uma informacao:</label>
+    <input type="text" id="informacao">
+    <button onclick="adicionar()">click aqui</button>
+    <ul id="lista">
+
+    </ul>
+    <script>
+        //Exercicio de criar um contador
+       /* var i=0;
+        function adicionar(){
+          i++;
+          document.getElementById("meuContador").innerHTML =i;
+
+        }*/
+       /* var i=0;
+        function adicionar(){
+          i++;
+         var contador= document.createElement('p');
+         contador.textContent=i;
+         document.body.appendChild(contador);
+
+         
+        }*/
+        var informacao=document.getElementById('informacao');
+        function adicionar(){
+       var linha=  document.createElement('li');
+        linha.textContent=informacao.value;
+        document.body.append(linha);
+       informacao.value='';
+        }
+    </script>
+</body>
+</html>

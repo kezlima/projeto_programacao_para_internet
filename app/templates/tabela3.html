@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Criar Tabela</title>
+  <style>
+    td {
+      width: 120px;
+      height: 60px;
+      background-color: gray;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Criar Tabela</h2>
+
+  <label>Quantidade de Linhas:</label>
+  <input type="number" id="linhasInput">
+  <br><br>
+
+  <label>Quantidade de Células por Linha:</label>
+  <input type="number" id="colunasInput">
+  <br><br>
+
+  <button onclick="criarTabela()">Criar</button>
+  <button onclick="limparTabela()">Limpar</button>
+
+  <br><br>
+
+  <table id="tabela" border="1"></table>
+
+  <script>
+    function criarTabela() {
+      const linhas = document.getElementById('linhasInput').value;
+      const colunas = document.getElementById('colunasInput').value;
+      const tabela = document.getElementById('tabela');
+
+      // Limpa a tabela
+      tabela.innerHTML = '';
+
+      for (let i = 0; i < linhas; i++) {
+        const linha = document.createElement('tr');
+
+        for (let j = 0; j < colunas; j++) {
+          const celula = document.createElement('td');
+
+          // Guarda o texto que será revelado
+          const texto = `Linha ${i + 1}, Célula ${j + 1}`;
+          celula.dataset.texto = texto; // Guarda o texto escondido
+
+          // No início, a célula está vazia
+          celula.textContent = "";
+
+        
+          linha.appendChild(celula);
+        }
+
+        // Criar botão Remover na linha
+        const botaoRemover = document.createElement('button');
+        botaoRemover.textContent = 'Remover';
+        botaoRemover.onclick = function() {
+          linha.remove();
+        };
+
+        const celulaBotao = document.createElement('td');
+        celulaBotao.appendChild(botaoRemover);
+        linha.appendChild(celulaBotao);
+
+        tabela.appendChild(linha);
+      }
+    }
+
+    function limparTabela() {
+      const tabela = document.getElementById('tabela');
+      tabela.innerHTML = '';
+    }
+  </script>
+
+</body>
+</html>

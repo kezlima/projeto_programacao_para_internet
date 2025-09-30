@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabela Dinâmica</title>
+  <style>
+    #linhas{
+      border: 1px solid black;
+    }
+    #colunas{
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Criar Tabela Dinâmica</h2>
+  <label>Linhas: <input type="number" id="linhas" min="1"></label>
+  <label>Células: <input type="number" id="celulas" min="1"></label>
+  <button onclick="criar()">Criar</button>
+  <button onclick="limpar()">Limpar</button>
+
+  <div id="tabelaContainer"></div>
+
+  <script>
+    function criar() {
+      const numLinhas = parseInt(document.getElementById('linhas').value);
+      const numCelulas = parseInt(document.getElementById('celulas').value);
+      const container = document.getElementById('tabelaContainer');
+
+
+      const tabela = document.createElement('table');
+
+      for (let i = 0; i < numLinhas; i++) {
+        const linha = document.createElement('tr');
+        for (let j = 0; j < numCelulas; j++) {
+          const celula = document.createElement('td');
+          celula.textContent = `Célula ${j + 1}`;
+          linha.appendChild(celula);
+        }
+
+        const btnRemover = document.createElement('button');
+        btnRemover.textContent = "Remover";
+        btnRemover.onclick = () => linha.remove();
+
+        const celulaBotao = document.createElement('td');
+        celulaBotao.appendChild(btnRemover);
+        linha.appendChild(celulaBotao);
+
+        tabela.appendChild(linha);
+      }
+
+      container.innerHTML = ''; // limpa o conteúdo anterior
+      container.appendChild(tabela);
+    }
+
+    function limpar() {
+      document.getElementById('tabelaContainer').innerHTML = '';
+    }
+  </script>
+</div>
+</body>
+</html>

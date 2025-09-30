@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="paragrafo">olá</p>
+    <button onclick="alterar()">alterar</button>
+    <button onclick="alterarCor()">alterar cor</button>
+
+    <form action="">
+        <label for="">Digite seu nome:</label>
+        <input type="text" id="nome">
+        <button onclick="adicionar()">adicionar</button>
+
+        <ul id="lista">
+
+       </ul>
+
+    </form>
+
+    <script type="text/javascript">
+        var paragrafo=document.getElementById('paragrafo');
+        var nome= document.getElementById('nome');
+        var lista= document.getElementById('lista');
+        
+        //Função para alterar parágrafo
+        function alterarCor(){
+           paragrafo.style.color='red';
+        }
+        function alterar(){
+           paragrafo.textContent='Texto alterado com sucesso!';
+        }
+        function adicionar(){
+            event.preventDefault();
+
+
+    const linha = document.createElement('li');
+    
+
+     
+    linha.textContent = nome.value; // Coloca o texto dentro do li
+    
+    lista.appendChild(linha); 
+
+    const botaoExcluir = document.createElement('button');
+            botaoExcluir.textContent = 'Excluir';
+            botaoExcluir.onclick = function() {
+            linha.remove();  // Remove apenas o item que tem o botão "Excluir" clicado
+            };// Adiciona na lista
+
+    linha.appendChild(botaoExcluir);
+
+    nome.value = ''; // Limpa o campo
+}
+   
+    </script>
+</body>
+</html>

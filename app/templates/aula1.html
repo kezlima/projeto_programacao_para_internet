@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='http://ajax.aspnetcdn.com/ajax/jquery/jquery-3.7.1.min.js'></script>
+    <style>
+        .estilo{
+            background-color: blueviolet;
+
+        }
+    </style>
+</head>
+<body id="pagina">
+    <label for="">Digite algo:</label>
+    <input type="text" id="informacao">
+    <button id="adicionar" onclick="post()">Click aqui</button>
+    <ul id="lista"></ul>
+
+    <script>
+    var texto=document.getElementById('informacao')
+
+       function post(){
+        var linha=document.createElement('li')
+        linha.textContent=texto.value
+        document.body.appendChild(linha)
+        var pagina = document.getElementById('pagina')
+      
+        document.getElementById('informacao').value=''
+        pagina.classList.add('estilo')
+       }
+       
+    </script>
+</body>
+</html>

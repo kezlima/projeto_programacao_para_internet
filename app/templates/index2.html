@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>minha primeira pagina</title>
+</head>
+<body>
+    {% if usuario_logado %}
+     <h1>bem vindo, {usuario.nome}</h1>
+     <ul>
+        {% for item in usuario.produtos %}
+           <li>{{item}}</li>
+     </ul>
+        {% endfor %}
+    {% else %}
+     <h1>faça login para continuar</h1>
+    {% endif %}
+     {#comentario#}
+</body>
+</html>

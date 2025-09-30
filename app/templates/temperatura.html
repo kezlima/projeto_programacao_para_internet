@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='http://ajax.aspnetcdn.com/ajax/jquery/jquery-3.7.1.min.js'></script>
+
+</head>
+<body>
+    <label for="">Digite a cidade:</label>
+    <input type="text" id="cidade">
+    <button onclick="funcao()" id="botao">Acessar</button>
+    <!--Fazer um requeste http do tipo get para a api-->
+
+
+    <script>
+        var api='https://wttr.in/santacatarina?format=j1'
+
+
+            $('#botao').click(function(funcao){
+             var cidade= document.getElementById('#cidade').val()
+             var novaApi="https://wttr.in/" + cidade + "?format=j1"
+             console.log(novaApi);
+       
+        })
+
+    </script>
+</body>
+</html>

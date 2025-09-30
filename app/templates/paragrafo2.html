@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src='http://ajax.aspnetcdn.com/ajax/jquery/jquery-3.7.1.min.js'></script>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+        }
+        #paragrafo1, #paragrafo2{
+            color: red;
+            padding: 60px;
+        }
+    </style>
+</head>
+<body><label for="">Digite algo:</label>
+    <input type="text" id="informacao"> 
+    <button onclick="click()"></button>
+    <span id="span"></span>
+
+    <p id="paragrafo1">Este é o primeiro parágrafo.</p>
+    <p id="paragrafo2">Este é o segundo parágrafo.</p>
+
+    <script>
+     /* Crie uma página HTML com dois parágrafos, ambos
+com o mesmo estilo CSS. Ao se passar o mouse sobre
+o parágrafo 1, o estilo CSS deste parágrafo deve
+mudar. Quando o mouse sair do parágrafo 1, deve
+retornar ao primeiro estilo. Implemente o mesmo
+comportamento para o parágrafo 2. Todo o
+comportamento da página deve ser implementado em
+jQuery.*/
+        $(document).ready(function() {
+          $('#paragrafo1').hover(function() {
+            $(this).css('background-color', 'blue');
+          }, function() {
+            $(this).css('background-color', '');
+          });
+    
+          $('#paragrafo2').hover(function() {
+            $(this).css('background-color', 'blue');
+          }, function() {
+            $(this).css('background-color', '');
+          });
+        });
+       
+
+        $('#informacao').val()
+       $('#span').html('')
+      </script>
+    
+   
+</body>
+</html>
+</body>
+</html>
