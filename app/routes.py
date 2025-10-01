@@ -7,6 +7,7 @@ from app.controllers.AuthenticationController import AuthenticationController
 from app.controllers.usuarioController import UsuarioController
 from app.controllers.postController import PostController
 from app.forms.professor_form import ProfessorForm
+from app.controllers.professorController import Professor
 
 @app.route("/")
 def home():
@@ -80,4 +81,11 @@ def remover(id):
 def cadastrar_professor():
     form=ProfessorForm()
     if form.validate_on_submit():
-        sucesso=ProfessorController.salvar(form)
+        sucesso=Professor.salvar(form)
+        if sucesso:
+            print('Formulário enviado para o controller')
+        
+        else:
+            print('Erro ao enviar formulário ')
+
+    return render_template('cadastro_professor.html', form=form)
