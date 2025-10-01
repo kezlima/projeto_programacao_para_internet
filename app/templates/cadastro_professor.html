@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block conteudo %}
+<h1>Cadastro de professores</h1>
+<form action="" method="post">
+    {{form.hidden_tag()}}
+    <p>
+        {{form.nome.label}}
+        {{form.nome()}}
+    </p>
+    <p>
+        {{form.materia.label}}
+        {{form.materia()}}
+    </p>
+    <p>
+        {{form.email.label}}
+        {{form.email()}}
+    </p>
+    <p>
+        {{form.senha.label}}
+        {{form.senha()}}
+    </p>
+    <p>
+        {{form.submit()}}
+    </p>
+</form>
+{% endblock %}

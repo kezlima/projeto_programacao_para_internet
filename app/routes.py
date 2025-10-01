@@ -3,10 +3,10 @@ from flask import render_template, flash
 from app.forms.login_form import LoginForm
 from app.forms.usuario_form import UsuarioForm
 from app.forms.post_form import PostForm
-from app.controllers.authenticationController import AuthenticationController
+from app.controllers.AuthenticationController import AuthenticationController
 from app.controllers.usuarioController import UsuarioController
 from app.controllers.postController import PostController
-
+from app.forms.professor_form import ProfessorForm
 
 @app.route("/")
 def home():
@@ -71,3 +71,13 @@ def atualizar(id):
 def remover(id):
     UsuarioController.remover_usuario(id)
     return render_template("index.html")
+
+
+###############################   EXERCICIOS DE REVISAO #############################
+
+
+@app.route('/cadastrar_professor', methods=['GET', 'POST'])
+def cadastrar_professor():
+    form=ProfessorForm()
+    if form.validate_on_submit():
+        sucesso=ProfessorController.salvar(form)
