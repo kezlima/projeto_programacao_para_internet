@@ -41,9 +41,17 @@ def sobre():
 
 @app.route('/post', methods = ['GET', 'POST'])
 def post():
-    formulario = PostForm()
-    PostController.criar(formulario)
-    return render_template('post.html', form = formulario)
+    form = PostForm()
+    if form.validate_on_submit():
+      sucesso=PostController.criar(form)
+      if sucesso:
+            flash("Postagem adicionada com sucesso!", category="success")
+            return render_template("index.html")
+      else:
+            flash("Erro ao cadastrar nova postagem.", category="error")
+    
+
+    return render_template('post.html', form = form)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -62,7 +70,7 @@ def login():
 
 
 @app.route("/cadastrar", methods=['GET', 'POST'])
-@login_required
+# @login_required
 def cadastrar():
     formulario = UsuarioForm()
     if formulario.validate_on_submit():
