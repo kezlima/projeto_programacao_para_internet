@@ -34,7 +34,7 @@ class UsuarioController:
     def atualizar_usuario(id, form):
         usuario = db.session.get(Usuario, id)
         if usuario:
-            usuario.username = form.username
+            usuario.username = form.username.data
             db.session.commit()
             print('Usuário atualizado com sucesso!')
         else:

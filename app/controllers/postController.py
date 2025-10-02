@@ -3,14 +3,14 @@ import sqlalchemy as sa
 from app.models import Post
 
 class PostController:
-    def criar(formulario):
+    def criar(form):
         try:
-            form = Usuario()
-            form.populate_obj(usuario)
-            
-            db.session.add(usuario)
+            post= Post()
+            form.populate_obj(post) 
+            db.session.add(post)
             db.session.commit()
             return True
+        
         except Exception as e:
             db.session.rollback()
             return False

@@ -11,8 +11,11 @@
         <div>
             Rede Social:
             <a href="/">Início</a>
-            <a href="{{ url_for('login') }}">Login</a>
-            <a href="{{ url_for('cadastrar') }}">Cadastro de Usuário</a>
+            {% if current_user.is_anonymous %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+                <a href="{{ url_for('cadastrar') }}">Cadastro de Usuário</a>
+            {% endif %}
             <a href="{{ url_for('listar') }}">Listar Usuários</a>
             <a href="{{ url_for('post') }}">Postagem</a>
         </div>

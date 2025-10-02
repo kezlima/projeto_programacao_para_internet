@@ -8,6 +8,27 @@ from app.controllers.usuarioController import UsuarioController
 from app.controllers.postController import PostController
 from app.forms.professor_form import ProfessorForm
 from app.controllers.professorController import Professor
+from flask import redirect, url_for, request
+from app.controllers import AuthenticationController
+from flask_login import login_required
+
+
+
+
+
+
+
+
+@app.route('/logout')
+def logout():
+    success = AuthenticationController.logout()
+    if not success:
+     flash("Erro ao realizar logout.", "error")
+    return redirect(url_for("home"))
+
+
+
+
 
 @app.route("/")
 def home():
@@ -22,17 +43,26 @@ def sobre():
 def post():
     formulario = PostForm()
     PostController.criar(formulario)
-    return render_template('post.html', formulario = formulario)
+    return render_template('post.html', form = formulario)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     formulario = LoginForm()
     if formulario.validate_on_submit():
-        return AuthenticationController.login(formulario)
+       if AuthenticationController.login(formulario):
+            flash('Login realizado com sucesso', "sucess")
+            next_page=request.args.get('next')
+
+            if not next_page:
+                next_page = url_for('home')
+            return redirect(next_page)
+    else:
+        flash('Usuário ou senha inválidos', "error")
     return render_template('login.html', title='Login', form = formulario)
 
 
 @app.route("/cadastrar", methods=['GET', 'POST'])
+@login_required
 def cadastrar():
     formulario = UsuarioForm()
     if formulario.validate_on_submit():

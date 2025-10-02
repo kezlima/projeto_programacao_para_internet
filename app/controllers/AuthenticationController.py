@@ -1,4 +1,8 @@
 from flask import render_template, flash
+from flask_login import login_user, logout_user
+from app.models.usuario import Usuario
+from werkzeug.security
+
 
 class AuthenticationController:
     
@@ -7,4 +11,15 @@ class AuthenticationController:
         usuario_logado = {
             'nome': form.username.data
         }
+
+        username=form.username.data.strip()
+        user=Usuario.query.filter_by(username=username).first()
+
+        if user:
+            if check_password_hash()
         return render_template("index.html", usuario = usuario_logado, usuario_logado = True)
+    
+
+
+    def logout():
+        return logout_user()
